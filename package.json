@@ -1,0 +1,33 @@
+{
+  "name": "prasmananjs",
+  "version": "0.0.1",
+  "description": "An alternative to carousel",
+  "main": "prasmanan.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahmanda/prasmananjs.git"
+  },
+  "keywords": [
+    "carousel"
+  ],
+  "author": "Rahmanda Wibowo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rahmanda/prasmananjs/issues"
+  },
+  "homepage": "https://github.com/rahmanda/prasmananjs#readme",
+  "devDependencies": {
+    "browser-sync": "^2.10.1",
+    "chai": "^3.4.1",
+    "gulp": "^3.8.8",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.0",
+    "gulp-sass": "^2.1.1",
+    "mocha": "^2.3.4",
+    "sinon": "^1.17.2"
+  },
+  "dependencies": {}
+}

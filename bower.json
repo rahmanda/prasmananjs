@@ -1,0 +1,22 @@
+{
+  "name": "prasmananjs",
+  "description": "An alternative to carousel",
+  "main": "prasmanan.js",
+  "authors": [
+    "Rahmanda Wibowo"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "carousel"
+  ],
+  "homepage": "https://github.com/rahmanda/prasmananjs",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {}
+}
