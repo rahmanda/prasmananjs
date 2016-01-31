@@ -67,8 +67,8 @@
 
       if (_isPointerInMiddle(this.counter, this.opts.cardsCount)) {
         this.pointer -= _calculateDistance(this.containerWidth,
-                                      _calculateMiddleDistance(this.cardsControlWidth,
-                                                          this.opts.cardMargin));
+                                           _calculateMiddleDistance(this.cardsControlWidth,
+                                                                    this.opts.cardMargin));
       } else {
         this.pointer -= _calculateDistance(this.cardWidth, this.cardsControlWidth);
       }
@@ -86,8 +86,8 @@
 
       if (_isPointerInMiddle(this.counter, this.opts.cardsCount, true)) {
         this.pointer += _calculateDistance(this.containerWidth,
-                                      _calculateMiddleDistance(this.cardsControlWidth,
-                                                          this.opts.cardMargin));
+                                           _calculateMiddleDistance(this.cardsControlWidth,
+                                                                    this.opts.cardMargin));
       } else {
         this.pointer += _calculateDistance(this.cardWidth, this.cardsControlWidth);
       }
