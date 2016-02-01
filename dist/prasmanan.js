@@ -30,6 +30,7 @@
     this.cardWidth         = null; // card width
     this.cardsWidth        = null; // cards width
     this.cardsControlWidth = null; // prev/next width
+    this.cardsControlWidthAlt = null;
 
     var defaults =  {
       container   : null, // single DOM
@@ -74,6 +75,8 @@
       }
 
       this.counter++;
+      _repaintControl.call(this);
+      _showOrHideControl.call(this);
       this.opts.cards.style.left = _toPixel(this.pointer);
     }
   };
@@ -93,6 +96,8 @@
       }
       
       this.counter--;
+      _repaintControl.call(this);
+      _showOrHideControl.call(this);
       this.opts.cards.style.left = _toPixel(this.pointer);
     }
   };
@@ -139,6 +144,10 @@
     this.cardsControlWidth = _calculateCardsControlWidth(this.containerWidth,
                                                          this.cardWidth,
                                                          this.opts.cardMargin);
+    this.cardsControlWidthAlt = _calculateCardsControlWidth(this.containerWidth,
+                                                            this.cardWidth,
+                                                            this.opts.cardMargin,
+							    true);
   }
 
   /*
@@ -146,8 +155,8 @@
    */
   function _initializeDOM() {
     _applyWidth(this.opts.card, this.cardWidth, this.opts.cardMargin);
-    _applyWidth(this.opts.prevControl, this.cardsControlWidth);
-    _applyWidth(this.opts.nextControl, this.cardsControlWidth);
+    _repaintControl.call(this);
+    _showOrHideControl.call(this);
     _applyWidth(this.opts.cards, this.cardsWidth);
   }
 
@@ -189,8 +198,14 @@
    * @param {Number} cardMargin
    * @return {Number}
    */
-  function _calculateCardsControlWidth(containerWidth, cardWidth, cardMargin) {
-    return (containerWidth - cardWidth - 2 * cardMargin) / 2;
+  function _calculateCardsControlWidth(containerWidth, cardWidth, cardMargin, alt) {
+    alt = typeof alt !== 'undefined' ? alt : false;
+
+    if (alt) {
+      return containerWidth - cardWidth - cardMargin;
+    } else {
+      return (containerWidth - cardWidth - 2 * cardMargin) / 2;
+    }
   }
 
   /*
@@ -241,6 +256,32 @@
    */
   function _toPixel(integer) {
     return String(integer) + 'px';
+  }
+
+  function _showOrHideControl() {
+    if (this.counter === 1) {
+      this.opts.prevControl.classList.add('hidden');
+    } else if (this.counter == this.opts.cardsCount){
+      this.opts.nextControl.classList.add('hidden');
+    } else {
+      this.opts.prevControl.classList.remove('hidden');
+      this.opts.nextControl.classList.remove('hidden');
+    }
+  }
+
+  /*
+   * Repaint control
+   */
+  function _repaintControl(){
+    var width, className;
+    if (this.counter === 1 || this.counter === this.opts.cardsCount) {
+      width = this.cardsControlWidthAlt;
+    } else {
+      width = this.cardsControlWidth;
+    }
+    
+    _applyWidth(this.opts.prevControl, width);
+    _applyWidth(this.opts.nextControl, width);
   }
 
 
