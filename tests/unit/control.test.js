@@ -1,11 +1,15 @@
+/*global  */
 var expect = chai.expect;
 
 var view = {
-  template: '<div class="container"><ul class="cards">' +
-            '<li id="card-1" class="card"></li>' +
-            '<li id="card-2" class="card"></li></ul></div>' +
-            '<div class="cards__control control--prev"></div>' +
-            '<div class="cards__control control--next"></div>',
+  template: '<div class="container" style="width: 100%;"><ul class="cards">' +
+            '<li id="card-1" class="card">Content</li>' +
+            '<li id="card-2" class="card">Content</li>' +
+            '<li id="card-3" class="card">Content</li>' +
+            '<li id="card-4" class="card">Content</li>' +
+            '<li id="card-5" class="card">Content</li></ul>' +
+            '<div class="cards__control control--prev"><</div>' +
+            '<div class="cards__control control--next">></div></div>',
   el: document.getElementById('fixtures'),
   render: function() {
     this.el.innerHTML = this.template;
@@ -17,6 +21,15 @@ var view = {
 
 var config = null;
 var prasmanan = null;
+
+var toNumber = function(string) {
+  number = string.substring(0, string.length - 2);
+  return Number(number);
+}
+
+var getFirstElement = function(className) {
+  return document.getElementsByClassName(className)[0];
+}
 
 describe("Prasmanan", function() {
   beforeEach(function() {
@@ -35,11 +48,11 @@ describe("Prasmanan", function() {
     prasmanan.serve();
   });
 
-  afterEach(function() {
-    view.empty();
-    config = null;
-    delete prasmanan;
-  });
+  // afterEach(function() {
+  //   view.empty();
+  //   config = null;
+  //   delete prasmanan;
+  // });
 
   describe("constructor", function() {
     it("should initialize properties", function() {
@@ -112,6 +125,38 @@ describe("Prasmanan", function() {
       expect(prasmanan.test.isPointerInMiddle(3, 5, true)).to.be.true;
       expect(prasmanan.test.isPointerInMiddle(2, 5, true)).to.be.false;
       expect(prasmanan.test.isPointerInMiddle(5, 5, true)).to.be.false;
+    });
+  });
+
+  describe("control width", function() {
+    it("should set control width properly", function() {
+      expect(toNumber(getFirstElement('control--prev').style.width))
+            .to.equal(prasmanan.cardsControlWidthAlt);
+
+      prasmanan.next();
+
+      expect(toNumber(getFirstElement('control--prev').style.width))
+            .to.equal(prasmanan.cardsControlWidth);
+
+      prasmanan.next();
+
+      expect(toNumber(getFirstElement('control--prev').style.width))
+            .to.equal(prasmanan.cardsControlWidth);
+
+      prasmanan.previous();
+
+      expect(toNumber(getFirstElement('control--prev').style.width))
+            .to.equal(prasmanan.cardsControlWidth);
+
+      prasmanan.previous();
+
+      expect(toNumber(getFirstElement('control--prev').style.width))
+            .to.equal(prasmanan.cardsControlWidth);
+
+      prasmanan.previous();
+
+      expect(toNumber(getFirstElement('control--prev').style.width))
+            .to.equal(prasmanan.cardsControlWidthAlt);
     });
   });
 });
