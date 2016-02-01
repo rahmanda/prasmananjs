@@ -20,6 +20,7 @@ var PATH = {
   sass : "src/scss/*.scss",
   view : "tests/manual/*.html",
   js   : "src/js/*.js",
+  test : "tests/unit/**/*.js",
   dist : {
     css : "dist",
     js  : "dist"
@@ -34,6 +35,7 @@ gulp.task('serve', ['sass'], function () {
 
   gulp.watch(PATH.sass, ['sass']);
   gulp.watch(PATH.view).on('change', browserSync.reload);
+  gulp.watch(PATH.test).on('change', browserSync.reload);
 });
 
 // Compile sass into CSS & auto-inject into browsers
