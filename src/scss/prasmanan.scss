@@ -82,6 +82,10 @@ $control-next-lt : 0;
 	right : 0;
     }
 
+    &.hidden {
+      display: none;
+    }
+
     .btn {
 	position: relative;
 	top     : ($card-h / 2) - 11px;
