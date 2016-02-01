@@ -25,7 +25,7 @@
   this.Prasmanan = function() {
 
     this.pointer           = 0;    // current cards position
-    this.counter           = 0;    // click counter
+    this.counter           = 1;    // click counter
     this.containerWidth    = null; // container width 
     this.cardWidth         = null; // card width
     this.cardsWidth        = null; // cards width
@@ -204,9 +204,9 @@
     prev = typeof prev !== 'undefined' ? prev : false;
 
     if (prev) {
-      return counter > 1 && counter < cardsCount - 1;
+      return counter > 2 && counter < cardsCount;
     } else {
-      return counter > 0 && counter < cardsCount - 2;
+      return counter > 1 && counter < cardsCount - 1;
     }
   }
 
@@ -242,5 +242,11 @@
   function _toPixel(integer) {
     return String(integer) + 'px';
   }
+
+
+  /* test only */
+  Prasmanan.prototype.test = {};
+  Prasmanan.prototype.test.extendDefaults             = _extendDefaults;
+  Prasmanan.prototype.test.isPointerInMiddle          = _isPointerInMiddle;
 
 }());
