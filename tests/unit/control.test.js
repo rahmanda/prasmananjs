@@ -36,7 +36,6 @@ describe("Prasmanan", function() {
     view.render();
     config = {
       container   : document.getElementsByClassName('container')[0],
-      cardsCount  : 2,
       cardMargin  : 20,
       cardWidth   : 0.75,
       card        : document.getElementsByClassName('card'),
@@ -48,11 +47,11 @@ describe("Prasmanan", function() {
     prasmanan.serve();
   });
 
-  // afterEach(function() {
-  //   view.empty();
-  //   config = null;
-  //   delete prasmanan;
-  // });
+  afterEach(function() {
+    view.empty();
+    config = null;
+    delete prasmanan;
+  });
 
   describe("constructor", function() {
     it("should initialize properties", function() {
@@ -83,7 +82,11 @@ describe("Prasmanan", function() {
     it("shouldn't increase counter if next() is called and counter > cardsCount - 1", function() {
       prasmanan.next();
       prasmanan.next();
-      expect(prasmanan.counter).to.equal(2);
+      prasmanan.next();
+      prasmanan.next();
+      prasmanan.next();
+      prasmanan.next();
+      expect(prasmanan.counter).to.equal(5);
     });
 
     it("shouldn't decrease counter if previous() is called and counter <= 0", function() {
@@ -125,6 +128,13 @@ describe("Prasmanan", function() {
       expect(prasmanan.test.isPointerInMiddle(3, 5, true)).to.be.true;
       expect(prasmanan.test.isPointerInMiddle(2, 5, true)).to.be.false;
       expect(prasmanan.test.isPointerInMiddle(5, 5, true)).to.be.false;
+    });
+  });
+
+  describe("cards count", function () {
+    it("should ensure that cards count is equal to DOM", function () {
+      var dom = document.getElementsByClassName('card');
+      expect(prasmanan.cardsCount).to.equal(dom.length);
     });
   });
 

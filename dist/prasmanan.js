@@ -27,6 +27,7 @@
     this.pointer           = 0;    // current cards position
     this.counter           = 1;    // click counter
     this.containerWidth    = null; // container width 
+    this.cardsCount        = 0;
     this.cardWidth         = null; // card width
     this.cardsWidth        = null; // cards width
     this.cardsControlWidth = null; // prev/next width
@@ -34,15 +35,13 @@
 
     var defaults =  {
       container   : null, // single DOM
-      cardsCount  : 5,    // integer
       cardMargin  : 0,    // integer
       cardWidth   : 0.8,  // decimal between 0-1
       card        : null, // array of DOMs
       cards       : null, // single DOM
       prevControl : null, // single DOM
       nextControl : null, // single DOM
-      prevButton  : null, // single DOM
-      nextButton  : null  // single DOM
+      isMobile    : false
     };
 
     if (arguments[0] && typeof arguments[0] === "object") {
@@ -66,7 +65,7 @@
   Prasmanan.prototype.next = function () {
     if (this.pointer > -(this.cardsWidth - this.containerWidth)) {
 
-      if (_isPointerInMiddle(this.counter, this.opts.cardsCount)) {
+      if (_isPointerInMiddle(this.counter, this.cardsCount)) {
         this.pointer -= _calculateDistance(this.containerWidth,
                                            _calculateMiddleDistance(this.cardsControlWidth,
                                                                     this.opts.cardMargin));
@@ -87,7 +86,7 @@
   Prasmanan.prototype.previous = function () {
     if (this.pointer < 0) {
 
-      if (_isPointerInMiddle(this.counter, this.opts.cardsCount, true)) {
+      if (_isPointerInMiddle(this.counter, this.cardsCount, true)) {
         this.pointer += _calculateDistance(this.containerWidth,
                                            _calculateMiddleDistance(this.cardsControlWidth,
                                                                     this.opts.cardMargin));
@@ -133,12 +132,13 @@
    * Initialize main object's properties
    */
   function _initializeProperties() {
+    this.cardsCount        = _getCardsCount.call(this);
     this.containerWidth    = this.opts.container.offsetWidth;
 
     this.cardWidth         = this.containerWidth * this.opts.cardWidth;
 
     this.cardsWidth        = _calculateCardsWidth(this.cardWidth,
-                                                  this.opts.cardsCount,
+                                                  this.cardsCount,
                                                   this.opts.cardMargin);
 
     this.cardsControlWidth = _calculateCardsControlWidth(this.containerWidth,
@@ -258,6 +258,9 @@
     return String(integer) + 'px';
   }
 
+  /*
+   * Show or hide control based on counter
+   */
   function _showOrHideControl() {
     if (this.counter === 1) {
       this.opts.prevControl.classList.add('hidden');
@@ -274,7 +277,7 @@
    */
   function _repaintControl(){
     var width, className;
-    if (this.counter === 1 || this.counter === this.opts.cardsCount) {
+    if (this.counter === 1 || this.counter === this.cardsCount) {
       width = this.cardsControlWidthAlt;
     } else {
       width = this.cardsControlWidth;
@@ -282,6 +285,13 @@
     
     _applyWidth(this.opts.prevControl, width);
     _applyWidth(this.opts.nextControl, width);
+  }
+
+  /*
+   * Get cards count
+   */
+  function _getCardsCount() {
+    return this.opts.card.length;
   }
 
 
