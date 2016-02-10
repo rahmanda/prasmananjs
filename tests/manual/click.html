@@ -53,25 +53,27 @@
       </ul>
       
       <div class="cards__control control--prev">
-	<span class="btn btn--prev"><</span>
+	
       </div>
       
       <div class="cards__control control--next">
-	<span class="btn btn--next">></span>
+	
       </div>
       
     </div>
+    <script type="text/javascript" src="/bower_components/hammerjs/hammer.js"></script>
+    <script type="text/javascript" src="/bower_components/hammer-time/hammer-time.js"></script>
     <script type="text/javascript" src="/dist/prasmanan.js"></script>
     <script>
      config = {
        container: document.getElementsByClassName('container')[0],
-       cardsCount: 6,
        cardMargin: 20,
        cardWidth: 0.75,
        card: document.getElementsByClassName('card'),
        cards: document.getElementsByClassName('cards')[0],
        prevControl: document.getElementsByClassName('control--prev')[0],
-       nextControl: document.getElementsByClassName('control--next')[0]
+       nextControl: document.getElementsByClassName('control--next')[0],
+       isMobile: true
      };
      prasmanan = new Prasmanan(config);
      prasmanan.serve();
