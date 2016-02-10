@@ -61,7 +61,10 @@ $control-next-lt : 0;
     /* width   : $cards-w; */
     height  : $card-h;
 
-    transition: all 0.25s ease-in;
+    
+    &.animate {
+      transition: all 0.1s ease-in;
+    }
 }
 
 .cards__control {
