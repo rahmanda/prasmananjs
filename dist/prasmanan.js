@@ -25,6 +25,7 @@
   this.Prasmanan = function() {
 
     this.pointer           = 0;    // current cards position
+    this.X                 = 0;
     this.counter           = 1;    // click counter
     this.containerWidth    = null; // container width 
     this.cardsCount        = 0;
@@ -101,6 +102,51 @@
     }
   };
 
+  Prasmanan.prototype.move = function (showIndex, percent, animate) {
+    showIndex = Math.max(0, Math.min(showIndex, this.cardsCount - 1));
+    percent = percent || 0;
+
+    var className = this.opts.cards.className;
+    var pos       = (this.cardsWidth / 100) * ((showIndex * 100) + percent);
+
+    // console.log(this.counter);
+
+    // if (pos === 0) {
+    //   pos = this.counter * this.cardWidth;
+    // }
+
+    if(animate) {
+      if(className.indexOf('animate') === -1) {
+        this.opts.cards.className += ' animate';
+      }
+    } else {
+      if(className.indexOf('animate') !== -1) {
+        this.opts.cards.className = className.replace('animate', '').trim();
+      }
+    }
+
+    this.pointer = pos;
+    this.opts.cards.style.left = _toPixel(this.pointer);
+    // this.counter = showIndex;
+  }
+
+  Prasmanan.prototype.pan = function (event) {
+    var percent = (100 / this.cardsWidth) * event.deltaX;
+    switch (event.type) {
+      case 'panmove':
+        this.move.call(this, this.counter - 1, percent, false);
+        break;
+      case 'pancancel':
+      case 'panend':
+        if (Math.abs(percent) > 10) {
+          this.counter += (percent < 0) ? -1 : 1;
+        }
+        percent = 0;
+        this.move.call(this, this.counter - 1, percent, true);
+        break;
+    }
+  };
+
   /*
    * Extend object that passed to main object
    */
@@ -119,6 +165,13 @@
    * Initialize event listener
    */
   function _initializeEvents() {
+    if (this.opts.cards && this.opts.isMobile) {
+      var hammertime = new Hammer.Manager(this.opts.cards);
+
+      hammertime.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 10 }));
+      hammertime.on('panstart panmove panend pancancel', Hammer.bindFn(this.pan, this));
+    }
+
     if (this.opts.prevControl) {
       this.opts.prevControl.addEventListener('click', this.previous.bind(this));
     }
