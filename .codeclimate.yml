@@ -1,0 +1,12 @@
+engines:
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
+ratings:
+  paths:
+  - dist/**/*.js
+  
+exclude_paths:
+- tests/**/*
+- src/**/*
