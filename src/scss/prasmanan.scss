@@ -1,20 +1,20 @@
-@import 'reset';
+@import "reset";
 
-/* Functions */
+// Functions
 @function cards-w($card-w,
-		      $card-m-r,
-		      $cards) {
+		          $card-m-r,
+		          $cards) {
     @return ($card-w * $cards) + ($card-m-r * ($cards - 1));
 }
 
 @function cards-control-w($container-w,
-			  $card-w,
-			  $card-m-r) {
+			              $card-w,
+			              $card-m-r) {
     @return ($container-w - $card-w - 2 * $card-m-r) / 2;
 }
 
 
-/* Variables */
+// Variables
 $container-w : 100%;
 
 $card-w   : 500px;
@@ -23,29 +23,27 @@ $card-m-r : 1%;
 $card-m   : 0 $card-m-r 0 0;
 $card-p   : 10px;
 
-$card-b   : 1px solid rgba(0,0,0,0.1);
+$card-b   : 1px solid rgba(0, 0, 0, .1);
 $card-b-r : 5px;
 
-$card-bg       : #eeeeee;
+$card-bg       : #eee;
 
 $card-media-w  : 120px;
 $card-media-h  : $card-media-w;
 $card-media-m  : 0 10px 10px 0;
-$card-media-bg : rgba(0,0,0,0.3);
+$card-media-bg : rgba(0, 0, 0, .3);
 
 $card-content-f-s : 1rem;
 $card-content-l-h : 1.2;
 
 $cards           : 5;
-/* $cards-w         : cards-w($card-w, $card-m-r, $cards); */
-/* $cards-control-w : cards-control-w($container-w, $card-w, $card-m-r); */
 
 $control-w       : 23px;
 $control-next-lt : 0;
 
 .container {
     position: relative;
-    
+
     display : block;
     width   : $container-w;
     height  : $card-h;
@@ -56,66 +54,59 @@ $control-next-lt : 0;
     position: absolute;
     top     : 0;
     left    : 0;
-    
-    display : block;
-    /* width   : $cards-w; */
-    height  : $card-h;
 
-    
-    &.animate {
-      transition: all 0.1s ease-in;
-    }
+    display : block;
+    height  : $card-h;
+    transition: all .1s ease-in;
 }
 
 .cards__control {
     position : absolute;
-    
-    /* width    : $cards-control-w; */
+
     height   : $card-h;
 
-    background: rgba(1,1,1,0.1);
+    background: rgba(1, 1, 1, .1);
 
     &.control--prev {
-	top  : 0;
-	left : 0;
+        top  : 0;
+        left : 0;
     }
 
     &.control--next {
-	top   : 0;
-	right : 0;
+        top   : 0;
+        right : 0;
     }
 
     &.hidden {
-      display: none;
+        display: none;
     }
 
     .btn {
-	position: relative;
-	top     : ($card-h / 2) - 11px;
-	left    : $control-next-lt;
-	
-	padding: 3px 5px;
+        position: relative;
+        top     : ($card-h / 2) - 11px;
+        left    : $control-next-lt;
 
-	background : $card-bg;
+        padding: 3px 5px;
+
+        background : $card-bg;
     }
 }
 
 .card {
     box-sizing : border-box;
-    
+
     float   : left;
-    
-    /* width   : $card-w; */
+
     height  : $card-h;
     padding : $card-p;
 
     border        : $card-b;
-    border-radius : $card-b-r; 
+    border-radius : $card-b-r;
 
     background : $card-bg;
-    
+
     &:last-child {
-	margin : 0;
+        margin : 0;
     }
 }
 

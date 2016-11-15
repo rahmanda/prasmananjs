@@ -1,3 +1,4 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*! Prasmanan.JS - v0.0.1 - 2016-01-29
  * https://github.com/rahmanda/prasmananjs
  * 
@@ -102,39 +103,23 @@
     }
   };
 
-  Prasmanan.prototype.move = function (showIndex, percent, animate) {
+  Prasmanan.prototype.move = function (showIndex, percent) {
     showIndex = Math.max(0, Math.min(showIndex, this.cardsCount - 1));
     percent = percent || 0;
 
     var className = this.opts.cards.className;
     var pos       = (this.cardsWidth / 100) * ((showIndex * 100) + percent);
 
-    // console.log(this.counter);
-
-    // if (pos === 0) {
-    //   pos = this.counter * this.cardWidth;
-    // }
-
-    if(animate) {
-      if(className.indexOf('animate') === -1) {
-        this.opts.cards.className += ' animate';
-      }
-    } else {
-      if(className.indexOf('animate') !== -1) {
-        this.opts.cards.className = className.replace('animate', '').trim();
-      }
-    }
-
     this.pointer = pos;
     this.opts.cards.style.left = _toPixel(this.pointer);
     // this.counter = showIndex;
-  }
+  };
 
   Prasmanan.prototype.pan = function (event) {
     var percent = (100 / this.cardsWidth) * event.deltaX;
     switch (event.type) {
       case 'panmove':
-        this.move.call(this, this.counter - 1, percent, false);
+        this.move.call(this, this.counter - 1, percent);
         break;
       case 'pancancel':
       case 'panend':
@@ -142,7 +127,7 @@
           this.counter += (percent < 0) ? -1 : 1;
         }
         percent = 0;
-        this.move.call(this, this.counter - 1, percent, true);
+        this.move.call(this, this.counter - 1, percent);
         break;
     }
   };
@@ -354,3 +339,5 @@
   Prasmanan.prototype.test.isPointerInMiddle          = _isPointerInMiddle;
 
 }());
+
+},{}]},{},[1]);

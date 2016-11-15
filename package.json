@@ -21,13 +21,17 @@
   "homepage": "https://github.com/rahmanda/prasmananjs#readme",
   "devDependencies": {
     "browser-sync": "^2.10.1",
+    "browserify": "^13.1.1",
     "chai": "^3.4.1",
     "gulp": "^3.8.8",
-    "gulp-concat": "^2.6.0",
     "gulp-cssnano": "^2.1.0",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.1",
+    "gulp-uglify": "^2.0.0",
     "mocha": "^2.3.4",
-    "sinon": "^1.17.2"
+    "sinon": "^1.17.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {}
 }
