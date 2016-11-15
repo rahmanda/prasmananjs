@@ -1,13 +1,13 @@
 {
   "name": "prasmananjs",
-  "description": "An alternative to carousel",
-  "main": "prasmanan.js",
+  "description": "Alternative for infinite slider that plays nicely with mobile.",
+  "main": "dist/prasmanan.js",
   "authors": [
-    "Rahmanda Wibowo"
+    "Rahmanda Wibowo <rahmandawibowo@gmail.com>"
   ],
   "license": "MIT",
   "keywords": [
-    "carousel"
+    "slider", "carousel", "hammerjs"
   ],
   "homepage": "https://github.com/rahmanda/prasmananjs",
   "moduleType": [],
