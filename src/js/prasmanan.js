@@ -1,9 +1,9 @@
 /*! Prasmanan.JS - v0.0.1 - 2016-01-29
  * https://github.com/rahmanda/prasmananjs
- * 
- * Copyright (c) 2016 Rahmanda Wibowo 
- * Licensed under MIT 
- * 
+ *
+ * Copyright (c) 2016 Rahmanda Wibowo
+ * Licensed under MIT
+ *
  * Example of using this plugin:
  * config = {
  *   container: $('#container').first(),
@@ -27,7 +27,7 @@
     this.pointer           = 0;    // current cards position
     this.X                 = 0;
     this.counter           = 1;    // click counter
-    this.containerWidth    = null; // container width 
+    this.containerWidth    = null; // container width
     this.cardsCount        = 0;
     this.cardWidth         = null; // card width
     this.cardsWidth        = null; // cards width
@@ -35,14 +35,15 @@
     this.cardsControlWidthAlt = null;
 
     var defaults =  {
-      container   : null, // single DOM
-      cardMargin  : 0,    // integer
-      cardWidth   : 0.8,  // decimal between 0-1
-      card        : null, // array of DOMs
-      cards       : null, // single DOM
-      prevControl : null, // single DOM
-      nextControl : null, // single DOM
-      isMobile    : false
+      container   : null,  // single DOM
+      cardMargin  : 0,     // integer (optional)
+      cardWidth   : 0.8,   // decimal between 0-1 (optional)
+      card        : null,  // array of DOMs
+      cards       : null,  // single DOM
+      prevControl : null,  // single DOM
+      nextControl : null,  // single DOM
+      enableTouch : false, // boolean (optional)
+      autoResize  : false  // boolean (optional)
     };
 
     if (arguments[0] && typeof arguments[0] === "object") {
@@ -94,7 +95,7 @@
       } else {
         this.pointer += _calculateDistance(this.cardWidth, this.cardsControlWidth);
       }
-      
+
       this.counter--;
       _repaintControl.call(this);
       _showOrHideControl.call(this);
@@ -117,17 +118,17 @@
   Prasmanan.prototype.pan = function (event) {
     var percent = (100 / this.cardsWidth) * event.deltaX;
     switch (event.type) {
-      case 'panmove':
-        this.move.call(this, this.counter - 1, percent);
-        break;
-      case 'pancancel':
-      case 'panend':
-        if (Math.abs(percent) > 10) {
-          this.counter += (percent < 0) ? -1 : 1;
-        }
-        percent = 0;
-        this.move.call(this, this.counter - 1, percent);
-        break;
+    case 'panmove':
+      this.move(this.counter - 1, percent);
+      break;
+    case 'pancancel':
+    case 'panend':
+      if (Math.abs(percent) > 10) {
+        this.counter += (percent < 0) ? -1 : 1;
+      }
+      percent = 0;
+      this.move(this.counter - 1, percent);
+      break;
     }
   };
 
@@ -149,7 +150,7 @@
    * Initialize event listener
    */
   function _initializeEvents() {
-    if (this.opts.cards && this.opts.isMobile) {
+    if (this.opts.cards && this.opts.enableTouch) {
       var hammertime = new Hammer.Manager(this.opts.cards);
 
       hammertime.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 10 }));
@@ -184,7 +185,7 @@
     this.cardsControlWidthAlt = _calculateCardsControlWidth(this.containerWidth,
                                                             this.cardWidth,
                                                             this.opts.cardMargin,
-							    true);
+							                                              true);
   }
 
   /*
@@ -267,7 +268,7 @@
    * @param {DOM|Array of DOM} $el
    * @param {Number} width
    * @param {Number} margin - optional
-   */ 
+   */
   function _applyWidth($el, width, margin) {
     margin = typeof margin !== 'undefined' ? margin : false;
 
@@ -276,7 +277,7 @@
     if (typeof $el.length !== 'undefined') {
       for (i = 0; i < $el.length; i++) {
         $el[i].style.width = _toPixel(width);
-        
+
         if (margin && i < $el.length - 1) {
           $el[i].style.marginRight = _toPixel(margin);
         }
@@ -301,7 +302,7 @@
   function _showOrHideControl() {
     if (this.counter === 1) {
       this.opts.prevControl.classList.add('hidden');
-    } else if (this.counter == this.opts.cardsCount){
+    } else if (this.counter === this.opts.cardsCount){
       this.opts.nextControl.classList.add('hidden');
     } else {
       this.opts.prevControl.classList.remove('hidden');
@@ -319,7 +320,7 @@
     } else {
       width = this.cardsControlWidth;
     }
-    
+
     _applyWidth(this.opts.prevControl, width);
     _applyWidth(this.opts.nextControl, width);
   }
