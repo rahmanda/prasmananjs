@@ -17,9 +17,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "hammerjs": "~2.0.6",
-    "hammer-time": "~1.0.0"
-  }
+  ]
 }
