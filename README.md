@@ -56,14 +56,13 @@ config = {
   card: document.getElementsByClassName('card'),
   cards: document.getElementsByClassName('cards')[0],
   prevControl: document.getElementsByClassName('control--prev')[0],
-  nextControl: document.getElementsByClassName('control--next')[0],
-  isMobile: false
+  nextControl: document.getElementsByClassName('control--next')[0]
 };
 prasmanan = new Prasmanan(config);
 prasmanan.serve();
 ```  
 
-If you want a better support for mobile (like swipe to view next/previous slide), set option `isMobile` to `true`, and add reference to [hammerjs](https://github.com/hammerjs/hammer.js) before `prasmananjs` reference.  
+If you want a better support for mobile (like swipe to view next/previous slide), add `enableTouch: true` to options, and add reference to [hammerjs](https://github.com/hammerjs/hammer.js) before `prasmananjs` reference.  
 
 ## Development  
 It is still highly under development, so it might change frequently. Below are some checklists that i'm working on.  
