@@ -3,15 +3,14 @@
   "version": "0.0.1",
   "description": "An alternative to carousel",
   "main": "prasmanan.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rahmanda/prasmananjs.git"
   },
   "keywords": [
-    "carousel"
+    "carousel",
+    "css",
+    "hammerjs"
   ],
   "author": "Rahmanda Wibowo",
   "license": "MIT",

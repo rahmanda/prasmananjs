@@ -1,16 +1,3 @@
-/*
-|------------------------------------------------------------------------------
-| Kenalkampus Reset - Tribute to Eric Meyer
-|------------------------------------------------------------------------------
-|
-| "Eric Meyer has sincerely solved the browsers ego problems"
-|
-| Please checkout junk styles regularly and remove it immediately before they 
-| spread like a mold.
-|
-*/
-
-// A bit of kenalkampus's style
 body {
     font-size: 16px;
 }
@@ -20,7 +7,6 @@ a {
     color           : inherit;
 }
 
-// Eric Meyer's Ultimate Spell
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -34,7 +20,6 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video,
-// a bit of kenalkampus's selector
 input, button, textarea {
   margin: 0;
   padding: 0;
@@ -42,11 +27,9 @@ input, button, textarea {
   font: inherit;
   vertical-align: baseline;
 
-  // a bit of kenalkampus's style
   font-size: 1rem;
 }
 
-// HTML5 display-role reset for older browsers
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;

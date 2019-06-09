@@ -1,7 +1,7 @@
 /*! Prasmanan.JS - v0.0.1 - 2016-01-29
  * https://github.com/rahmanda/prasmananjs
  *
- * Copyright (c) 2016 Rahmanda Wibowo
+ * Copyright (c) 2016-present, Rahmanda Wibowo
  * Licensed under MIT
  *
  * Example of using this plugin:

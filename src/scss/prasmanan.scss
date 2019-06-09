@@ -1,5 +1,3 @@
-@import "reset";
-
 // Functions
 @function cards-w($card-w,
 		          $card-m-r,
@@ -15,31 +13,31 @@
 
 
 // Variables
-$container-w : 100%;
+$container-w : 100% !default;
 
-$card-w   : 500px;
-$card-h   : 150px;
-$card-m-r : 1%;
-$card-m   : 0 $card-m-r 0 0;
-$card-p   : 10px;
+$card-w   : 500px !default;
+$card-h   : 150px !default;
+$card-m-r : 1% !default;
+$card-m   : 0 $card-m-r 0 0 !default;
+$card-p   : 10px !default;
 
-$card-b   : 1px solid rgba(0, 0, 0, .1);
-$card-b-r : 5px;
+$card-b   : 1px solid rgba(0, 0, 0, .1) !default;
+$card-b-r : 5px !default;
 
-$card-bg       : #eee;
+$card-bg       : #eee !default;
 
-$card-media-w  : 120px;
-$card-media-h  : $card-media-w;
-$card-media-m  : 0 10px 10px 0;
-$card-media-bg : rgba(0, 0, 0, .3);
+$card-media-w  : 120px !default;
+$card-media-h  : $card-media-w !default;
+$card-media-m  : 0 10px 10px 0 !default;
+$card-media-bg : rgba(0, 0, 0, .3) !default;
 
-$card-content-f-s : 1rem;
-$card-content-l-h : 1.2;
+$card-content-f-s : 1rem !default;
+$card-content-l-h : 1.2 !default;
 
-$cards           : 5;
+$cards           : 5 !default;
 
-$control-w       : 23px;
-$control-next-lt : 0;
+$control-w       : 23px !default;
+$control-next-lt : 0 !default;
 
 .container {
     position: relative;
